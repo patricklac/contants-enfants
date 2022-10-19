@@ -1,7 +1,7 @@
 package ch.heig.pl.presentation;
 
-import ch.heig.pl.business.AlreadyCoupledException;
-import ch.heig.pl.business.ContactService;
+import ch.heig.pl.dto.Couple;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -17,7 +17,8 @@ import java.util.List;
 public class UniCouple extends HttpServlet {
 
     @Inject
-    private ContactService contactService;
+    @RestClient
+    private CoupleService coupleService;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,9 +40,9 @@ public class UniCouple extends HttpServlet {
 
         if (errors.size() == 0) {
             try {
-                contactService.unit(nom1, nom2);
+                coupleService.unit(new Couple(nom1,nom2));
                 response.sendRedirect(request.getContextPath() + "/listeCouples");
-            } catch (AlreadyCoupledException e) {
+            } catch (Exception e) {
                 errors.add("Déjà en couple");
             }
         }

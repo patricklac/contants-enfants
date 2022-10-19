@@ -1,10 +1,12 @@
 package ch.heig.pl.business;
 
+import ch.heig.pl.dto.Couple;
 import ch.heig.pl.integration.ContactDAO;
 import ch.heig.pl.model.Contact;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,15 +38,17 @@ public class ContactService {
      * Liste des contacts en couple.
      *   seulement un contact par couple.
      */
-    public Set<Contact> getContactsInCouple() {
+    public List<Couple> getCouples() {
         List<Contact> contacts = contactDAO.getContacts();
+        List<Couple> couples = new ArrayList<>();
         Set<Contact> contactsInCouple = new HashSet<>();
         for (Contact contact : contacts) {
             Contact contact2 = contact.getConjoint();
             if (contact2 != null && !contactsInCouple.contains(contact2)) {
                 contactsInCouple.add(contact);
+                couples.add(new Couple(contact.getNom(),contact2.getNom()));
             }
         }
-        return contactsInCouple;
+        return couples;
     }
 }
