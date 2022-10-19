@@ -1,6 +1,7 @@
 package ch.heig.pl.presentation;
 
 import ch.heig.pl.business.ContactService;
+import ch.heig.pl.integration.ContactDAO;
 import ch.heig.pl.model.Contact;
 
 import javax.inject.Inject;
@@ -11,17 +12,17 @@ import java.util.List;
 @Path("/contact")
 public class ContactResource  {
     @Inject
-    private ContactService contactService;
+    private ContactDAO contactDAO;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Contact> getContacts () {
-        return contactService.getContacts();
+        return contactDAO.getContacts();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void add(Contact contact) {
-        contactService.add(contact);
+        contactDAO.save(contact);
     }
 }

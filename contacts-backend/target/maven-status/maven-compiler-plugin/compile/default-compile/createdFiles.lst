@@ -1,5 +1,9 @@
-ch\heig\pl\business\ContactService.class
 ch\heig\pl\presentation\ContactResource.class
-ch\heig\pl\presentation\DemoApplication.class
+ch\heig\pl\integration\ContactDAO.class
+ch\heig\pl\business\AlreadyCoupledException.class
+ch\heig\pl\presentation\ContactsApplication.class
+ch\heig\pl\presentation\ListeCouples.class
+ch\heig\pl\business\ContactService.class
+ch\heig\pl\presentation\CoupleResource.class
+ch\heig\pl\presentation\UniCouple.class
 ch\heig\pl\model\Contact.class
-ch\heig\pl\presentation\HelloResource.class

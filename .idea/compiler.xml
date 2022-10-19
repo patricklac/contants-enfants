@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="contacts-backend" />
         <module name="contacts" />
+        <module name="contacts-frontend" />
       </profile>
     </annotationProcessing>
   </component>
