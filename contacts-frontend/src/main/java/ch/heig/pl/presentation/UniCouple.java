@@ -9,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +44,8 @@ public class UniCouple extends HttpServlet {
             try {
                 coupleService.unit(new Couple(nom1,nom2));
                 response.sendRedirect(request.getContextPath() + "/listeCouples");
-            } catch (Exception e) {
-                errors.add("Déjà en couple");
+            } catch (WebApplicationException e) {
+                errors.add("Contact pas trouvé ou déjà en couple");
             }
         }
         if (errors.size() != 0) {

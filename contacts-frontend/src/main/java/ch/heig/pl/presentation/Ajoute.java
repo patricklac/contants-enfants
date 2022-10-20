@@ -1,10 +1,9 @@
 package ch.heig.pl.presentation;
 
-import ch.heig.pl.model.Contact;
+import ch.heig.pl.dto.Contact;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import javax.inject.Inject;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

@@ -1,8 +1,8 @@
-C:\github\AMT\contacts-micro\contacts-backend\src\main\java\ch\heig\pl\model\Contact.java
 C:\github\AMT\contacts-micro\contacts-backend\src\main\java\ch\heig\pl\business\AlreadyCoupledException.java
-C:\github\AMT\contacts-micro\contacts-backend\src\main\java\ch\heig\pl\presentation\UniCouple.java
-C:\github\AMT\contacts-micro\contacts-backend\src\main\java\ch\heig\pl\presentation\ListeCouples.java
+C:\github\AMT\contacts-micro\contacts-backend\src\main\java\ch\heig\pl\model\ContactEntity.java
 C:\github\AMT\contacts-micro\contacts-backend\src\main\java\ch\heig\pl\business\ContactService.java
+C:\github\AMT\contacts-micro\contacts-backend\src\main\java\ch\heig\pl\dto\Contact.java
+C:\github\AMT\contacts-micro\contacts-backend\src\main\java\ch\heig\pl\dto\Couple.java
 C:\github\AMT\contacts-micro\contacts-backend\src\main\java\ch\heig\pl\integration\ContactDAO.java
 C:\github\AMT\contacts-micro\contacts-backend\src\main\java\ch\heig\pl\presentation\CoupleResource.java
 C:\github\AMT\contacts-micro\contacts-backend\src\main\java\ch\heig\pl\presentation\ContactResource.java

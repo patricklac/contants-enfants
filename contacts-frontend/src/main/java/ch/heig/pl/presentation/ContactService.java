@@ -1,6 +1,6 @@
 package ch.heig.pl.presentation;
 
-import ch.heig.pl.model.Contact;
+import ch.heig.pl.dto.Contact;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import javax.ws.rs.*;

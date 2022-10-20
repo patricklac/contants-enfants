@@ -1,13 +1,12 @@
 package ch.heig.pl.presentation;
 
 import ch.heig.pl.dto.Couple;
-import ch.heig.pl.model.Contact;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
-import java.util.Set;
 
 @Path("/api")
 @RegisterRestClient(baseUri = "http://localhost:8081")

@@ -1,4 +1,8 @@
+ch\heig\pl\dto\Contact.class
+ch\heig\pl\presentation\CoupleService.class
+ch\heig\pl\dto\Couple.class
+ch\heig\pl\presentation\ListeCouples.class
 ch\heig\pl\presentation\Liste.class
-ch\heig\pl\model\Contact.class
+ch\heig\pl\presentation\UniCouple.class
 ch\heig\pl\presentation\Ajoute.class
 ch\heig\pl\presentation\ContactService.class

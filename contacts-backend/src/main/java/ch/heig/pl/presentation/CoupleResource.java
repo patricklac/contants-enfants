@@ -8,6 +8,7 @@ import ch.heig.pl.integration.ContactDAO;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/couple")
@@ -30,7 +31,7 @@ public class CoupleResource {
         try {
             contactService.unit(couple.getNom1(), couple.getNom2());
         } catch (AlreadyCoupledException e) {
-            throw new RuntimeException(e);
+            throw new NotFoundException();
         }
     }
 }

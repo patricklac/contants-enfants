@@ -2,7 +2,7 @@ package ch.heig.pl.business;
 
 import ch.heig.pl.dto.Couple;
 import ch.heig.pl.integration.ContactDAO;
-import ch.heig.pl.model.Contact;
+import ch.heig.pl.model.ContactEntity;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -21,14 +21,14 @@ public class ContactService {
      *  Unit 2 contacts s'ils existent et s'ils sont libres
      */
     public void unit(String nom1, String nom2) throws AlreadyCoupledException {
-        Contact contact1 = contactDAO.getContact(nom1);
-        Contact contact2 = contactDAO.getContact(nom2);
-        if (contact1 != null && contact1.getConjoint() == null
-                && contact2 != null && contact2.getConjoint() == null) {
-            contact1.setConjoint(contact2);
-            contactDAO.save(contact1);
-            contact2.setConjoint(contact1);
-            contactDAO.save(contact2);
+        ContactEntity contactEntity1 = contactDAO.getContact(nom1);
+        ContactEntity contactEntity2 = contactDAO.getContact(nom2);
+        if (contactEntity1 != null && contactEntity1.getConjoint() == null
+                && contactEntity2 != null && contactEntity2.getConjoint() == null) {
+            contactEntity1.setConjoint(contactEntity2);
+            contactDAO.save(contactEntity1);
+            contactEntity2.setConjoint(contactEntity1);
+            contactDAO.save(contactEntity2);
         } else {
             throw new AlreadyCoupledException();
         }
@@ -39,14 +39,14 @@ public class ContactService {
      *   seulement un contact par couple.
      */
     public List<Couple> getCouples() {
-        List<Contact> contacts = contactDAO.getContacts();
+        List<ContactEntity> contactEntities = contactDAO.getContacts();
         List<Couple> couples = new ArrayList<>();
-        Set<Contact> contactsInCouple = new HashSet<>();
-        for (Contact contact : contacts) {
-            Contact contact2 = contact.getConjoint();
-            if (contact2 != null && !contactsInCouple.contains(contact2)) {
-                contactsInCouple.add(contact);
-                couples.add(new Couple(contact.getNom(),contact2.getNom()));
+        Set<ContactEntity> contactsInCouple = new HashSet<>();
+        for (ContactEntity contactEntity : contactEntities) {
+            ContactEntity contactEntity2 = contactEntity.getConjoint();
+            if (contactEntity2 != null && !contactsInCouple.contains(contactEntity2)) {
+                contactsInCouple.add(contactEntity);
+                couples.add(new Couple(contactEntity.getNom(), contactEntity2.getNom()));
             }
         }
         return couples;

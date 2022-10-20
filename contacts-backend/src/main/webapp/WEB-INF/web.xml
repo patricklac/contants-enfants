@@ -13,10 +13,5 @@
     <servlet-name>H2Console</servlet-name>
     <url-pattern>/console/*</url-pattern>
   </servlet-mapping>
-  <data-source>
-    <name>java:global/ContactsInMem</name>
-    <class-name>org.h2.jdbcx.JdbcDataSource</class-name>
-    <url>jdbc:h2:mem:contacts</url>
-  </data-source>
 
 </web-app>

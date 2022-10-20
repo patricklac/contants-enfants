@@ -1,6 +1,6 @@
 package ch.heig.pl.integration;
 
-import ch.heig.pl.model.Contact;
+import ch.heig.pl.model.ContactEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -21,21 +21,21 @@ public class ContactDAO {
     /**
      * Liste de tous les contacts
      */
-    public List<Contact> getContacts() {
-        List<Contact> contacts = new ArrayList<>();
+    public List<ContactEntity> getContacts() {
+        List<ContactEntity> contactEntities = new ArrayList<>();
         try {
-            contacts = em.createQuery("SELECT c FROM Contact c", Contact.class).getResultList();
+            contactEntities = em.createQuery("SELECT c FROM ContactEntity c", ContactEntity.class).getResultList();
         } catch (PersistenceException e) {
             Logger.getLogger(ContactDAO.class.getName()).log(Level.SEVERE, null, e);
         }
-        return contacts;
+        return contactEntities;
     }
 
     /**
      *  Crée ou met à jour un Contact
      */
-    public void save(Contact contact) {
-            em.merge(contact);
+    public void save(ContactEntity contactEntity) {
+            em.merge(contactEntity);
     }
 
     /**
@@ -43,15 +43,15 @@ public class ContactDAO {
      *   obtention du contact conjoint s'il existe
      *   (contact inconnu encore à gérer)
      */
-    public Contact getContact(String nom) {
-        Contact contact = null;
+    public ContactEntity getContact(String nom) {
+        ContactEntity contactEntity = null;
         try {
-            TypedQuery<Contact> query = em.createQuery(
-                    "SELECT c FROM Contact c WHERE c.nom = :nom", Contact.class);
+            TypedQuery<ContactEntity> query = em.createQuery(
+                    "SELECT c FROM ContactEntity c WHERE c.nom = :nom", ContactEntity.class);
             return query.setParameter("nom", nom).getSingleResult();
         } catch (PersistenceException e) {
             Logger.getLogger(ContactDAO.class.getName()).log(Level.SEVERE, null, e);
         }
-        return contact;
+        return contactEntity;
     }
 }
