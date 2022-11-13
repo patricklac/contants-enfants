@@ -26,6 +26,14 @@ public class ContactResource  {
         return contacts;
     }
 
+    @GET
+    @Path("/{nom}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Contact getContact (@PathParam("nom") String nom) {
+        ContactEntity contact = contactDAO.getContact(nom);
+        return new Contact(contact.getNom(),contact.getTelephone());
+    }
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void add(Contact contact) {
