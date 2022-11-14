@@ -4,6 +4,7 @@ import ch.heig.pl.business.AlreadyCoupledException;
 import ch.heig.pl.business.ContactService;
 import ch.heig.pl.dto.Couple;
 import ch.heig.pl.integration.ContactDAO;
+import ch.heig.pl.model.ContactNotFoundException;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -30,7 +31,7 @@ public class CoupleResource {
     public void unit(Couple couple) {
         try {
             contactService.unit(couple.getNom1(), couple.getNom2());
-        } catch (AlreadyCoupledException e) {
+        } catch (AlreadyCoupledException | ContactNotFoundException e) {
             throw new NotFoundException();
         }
     }

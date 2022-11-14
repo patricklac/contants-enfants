@@ -1,12 +1,10 @@
 package ch.heig.pl.integration;
 
 import ch.heig.pl.model.ContactEntity;
+import ch.heig.pl.model.ContactNotFoundException;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceException;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -43,12 +41,14 @@ public class ContactDAO {
      *   obtention du contact conjoint s'il existe
      *   (contact inconnu encore à gérer)
      */
-    public ContactEntity getContact(String nom) {
+    public ContactEntity getContact(String nom) throws ContactNotFoundException {
         ContactEntity contactEntity = null;
         try {
             TypedQuery<ContactEntity> query = em.createQuery(
                     "SELECT c FROM ContactEntity c WHERE c.nom = :nom", ContactEntity.class);
             return query.setParameter("nom", nom).getSingleResult();
+        } catch (NoResultException e) {
+            throw new ContactNotFoundException(nom);
         } catch (PersistenceException e) {
             Logger.getLogger(ContactDAO.class.getName()).log(Level.SEVERE, null, e);
         }

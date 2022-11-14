@@ -3,6 +3,7 @@ package ch.heig.pl.business;
 import ch.heig.pl.dto.Couple;
 import ch.heig.pl.integration.ContactDAO;
 import ch.heig.pl.model.ContactEntity;
+import ch.heig.pl.model.ContactNotFoundException;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -20,7 +21,7 @@ public class ContactService {
     /**
      *  Unit 2 contacts s'ils existent et s'ils sont libres
      */
-    public void unit(String nom1, String nom2) throws AlreadyCoupledException {
+    public void unit(String nom1, String nom2) throws AlreadyCoupledException, ContactNotFoundException {
         ContactEntity contactEntity1 = contactDAO.getContact(nom1);
         ContactEntity contactEntity2 = contactDAO.getContact(nom2);
         if (contactEntity1 != null && contactEntity1.getConjoint() == null
