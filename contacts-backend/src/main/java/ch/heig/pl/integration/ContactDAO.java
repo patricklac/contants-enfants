@@ -1,5 +1,6 @@
 package ch.heig.pl.integration;
 
+import ch.heig.pl.dto.Contact;
 import ch.heig.pl.model.ContactEntity;
 import ch.heig.pl.model.ContactNotFoundException;
 
@@ -52,6 +53,12 @@ public class ContactDAO {
         } catch (PersistenceException e) {
             Logger.getLogger(ContactDAO.class.getName()).log(Level.SEVERE, null, e);
         }
+        return contactEntity;
+    }
+
+    public ContactEntity getContactById(String id) {
+        int idnum = Integer.parseInt(id);
+        ContactEntity contactEntity = em.find(ContactEntity.class,idnum);
         return contactEntity;
     }
 }
