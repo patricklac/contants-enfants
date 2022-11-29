@@ -1,6 +1,7 @@
 package ch.heig.pl.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +16,13 @@ public class ContactEntity {
 
     @OneToOne
     private ContactEntity conjoint;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parent")
+    private List<ContactEntity> enfants;
+
+    @ManyToOne
+    @JoinColumn
+    private ContactEntity parent;
 
     public ContactEntity() {
     }
@@ -38,6 +46,24 @@ public class ContactEntity {
 
     public void setConjoint(ContactEntity conjoint) {
         this.conjoint = conjoint;
+    }
+    public void addEnfant(ContactEntity contactEntity) {
+        enfants.add(contactEntity);
+    }
+    public List<ContactEntity> getEnfants() {
+        return enfants;
+    }
+
+    public void setEnfants(List<ContactEntity> enfants) {
+        this.enfants = enfants;
+    }
+
+    public ContactEntity getParent() {
+        return parent;
+    }
+
+    public void setParent(ContactEntity parent) {
+        this.parent = parent;
     }
 
     public void setNom(String nom) {

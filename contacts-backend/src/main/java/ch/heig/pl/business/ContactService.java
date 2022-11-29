@@ -1,5 +1,6 @@
 package ch.heig.pl.business;
 
+import ch.heig.pl.dto.Contact;
 import ch.heig.pl.dto.Couple;
 import ch.heig.pl.integration.ContactDAO;
 import ch.heig.pl.model.ContactEntity;
@@ -51,5 +52,13 @@ public class ContactService {
             }
         }
         return couples;
+    }
+
+    public void enfant(String nom1, String nom2) throws ContactNotFoundException {
+        ContactEntity contactEntity1 = contactDAO.getContact(nom1);
+        ContactEntity contactEntity2 = contactDAO.getContact(nom2);
+        contactEntity1.addEnfant(contactEntity2);
+        contactEntity2.setParent(contactEntity1);
+        contactDAO.save(contactEntity1);
     }
 }

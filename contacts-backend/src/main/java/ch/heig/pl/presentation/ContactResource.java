@@ -55,4 +55,5 @@ public class ContactResource  {
                 .build();
         return Response.created(location).build();
     }
+
 }
